@@ -46,6 +46,11 @@ class FeatureInteraction(BaseEstimator, TransformerMixin):
 
 		for comb in self._combinations(features):
 			feat_1, feat_2 =  comb
+			# subtraction
 			interactions.append(X[:, int(feat_2)] - X[:, int(feat_1)])
+			# addition
+			interactions.append(X[:, int(feat_2)] + X[:, int(feat_1)])
+			# multiplication
+			interactions.append(X[:, int(feat_2)] * X[:, int(feat_1)])
 
 		return np.vstack(interactions).T
