@@ -1,13 +1,14 @@
 import numpy as np
-
 from itertools import combinations
 from sklearn.base import BaseEstimator, TransformerMixin
+
+from .helpers import create_golden_feature
+
 
 __all__ = [
 			"GoldenFeatures",
 			"FeatureInteraction"
 			]
-
 
 class GoldenFeatures(BaseEstimator, TransformerMixin):
 	"""
@@ -21,8 +22,7 @@ class GoldenFeatures(BaseEstimator, TransformerMixin):
 		return self
 
 	def transform(self, X):
-		X['f528-f527'] = X['f528'] - X['f527']
-		X['f528-f274'] = X['f528'] - X['f274']
+		X = create_golden_feature(X)
 		return X
 
 class FeatureInteraction(BaseEstimator, TransformerMixin):
